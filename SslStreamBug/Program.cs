@@ -35,13 +35,11 @@ namespace SslStreamBug
 
 		static void Main(string[] args)
 		{
-			// before running the software make sure Tor is up and running with socks port 127.0.0.1 and port 9050 (Tor default parameters - not the Tor Browser)
-
-			// If you set it to true (ignore it) the bug will be shown on Ubuntu (probably Linux, OSX), but not on wondows
-			var ignoreSslCertification = false;
-
+			// Before running the software make sure Tor is up and running
+			
 			var uri = new Uri("https://httpbin.org/");
-			var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9050);
+			// If you run Tor Browser, not Tor directly then your port is 9150
+			var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9050); 
 
 			Console.WriteLine("Connecting socket...");
 			Socket socket = ConnectToSocket(endPoint);
@@ -53,20 +51,8 @@ namespace SslStreamBug
 
 			Console.WriteLine("Ssl authenticating as client...");
 			using (var stream = new NetworkStream(socket, ownsSocket: false))
-			{
-				SslStream httpsStream;
-				if (ignoreSslCertification)
-				{
-					httpsStream = new SslStream(
-						stream,
-						leaveInnerStreamOpen: true,
-						userCertificateValidationCallback: (a, b, c, d) => true);
-				}
-				else
-				{
-					httpsStream = new SslStream(stream, leaveInnerStreamOpen: true);
-				}
-
+			using (SslStream httpsStream = new SslStream(stream, leaveInnerStreamOpen: true))
+			{ 
 				httpsStream
 					.AuthenticateAsClientAsync(
 						uri.DnsSafeHost,
