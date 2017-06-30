@@ -7,8 +7,12 @@
 3. `dotnet build`
 4. `dotnet run`
 
-## The bug
-The bug is present on Ubuntu, but not on Windows. I suspect it is both issue on Linux and OSX.  
+## Where is the bug present?
+
+The bug is present on Ubuntu, but not on Windows 7. I suspect it is an **issue on both Linux and OSX, but not an issue on Windows**, because it doesn't use OpenSSL.  
+The bug is present in **`dotnet --version` output:** 1.0.1  and **`dotnet --version` output:** 2.0.0-preview2-006497  
+
+## The stacktrace
   
 ```
 Connecting socket...
