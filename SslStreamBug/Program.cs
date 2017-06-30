@@ -35,8 +35,8 @@ namespace SslStreamBug
 
 		static void Main(string[] args)
 		{
-			// Before running the software make sure Tor is up and running
-			
+			// Before running the software make sure Tor is running: https://www.torproject.org/download/download.html.en
+
 			var uri = new Uri("https://httpbin.org/");
 			// If you run Tor Browser, not Tor directly then your port is 9150
 			var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9050); 
