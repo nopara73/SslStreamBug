@@ -38,9 +38,9 @@ namespace SslStreamBug
 			// before running the software make sure Tor is up and running with socks port 127.0.0.1 and port 9050 (Tor default parameters - not the Tor Browser)
 
 			// If you set it to true (ignore it) the bug will be shown on Ubuntu (probably Linux, OSX), but not on wondows
-			var ignoreSslCertification = true;
+			var ignoreSslCertification = false;
 
-			var uri = new Uri("https://api.qbit.ninja");
+			var uri = new Uri("https://httpbin.org/");
 			var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9050);
 
 			Console.WriteLine("Connecting socket...");
