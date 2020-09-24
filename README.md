@@ -1,3 +1,5 @@
+UPDATE: This is fixed in .NET Core 3.1: https://github.com/nopara73/SslStreamBugCore3
+
 # SslStreamBug
 
 ## How to run
